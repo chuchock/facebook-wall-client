@@ -1,0 +1,48 @@
+.login-container {
+    min-height: 640px;
+    display: flex;
+    align-items: center;
+    background: #f0f2f5;
+}
+
+.login-brand {
+    width: 20em;
+    border: 0;
+    margin-left: -28px;
+}
+
+.card-login {
+    background-color: #fff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 20px 0 28px;
+    max-width: 396px;
+    padding-bottom: 24px;
+    padding-top: 10px;
+}
+
+.form-login {
+    padding: 10px;
+}
+
+.form-separator {
+    align-items: center;
+    border-bottom: 1px solid #dadde1;
+    display: flex;
+    margin: 20px 16px;
+    text-align: center;
+}
+
+.form-msg {
+    max-width: 396px;
+    margin: 0 auto;
+    padding: 10px;
+    text-align: center;
+    color: #1c1e21;
+    font-family: SFProText-Regular, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+}
