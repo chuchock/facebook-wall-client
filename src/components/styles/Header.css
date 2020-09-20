@@ -1,0 +1,13 @@
+.navbar {
+    height: 60px;
+}
+
+.navbar-nav {
+    margin: 0 auto;
+    justify-content: space-evenly;
+    width: 50%;
+}
+
+.header-logo {
+    width: 100px;
+}

@@ -1,46 +1,40 @@
 import React from 'react';
 
+import './styles/Header.css';
+import logo from '../assets/fb_logo.svg';
+
 const Header = () => {
   return (
-    <header>
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-6">
-            <div className="logo">Responsive</div>
-          </div>
-          <div className="col-sm-6 hidden-xs">
-            <div className="row">
-              <div className="col-sm-5">
-                <div className="form-group">
-                  <input type="text" className="form-control" placeholder="Email Address" />
-                  <div className="login-bottom-text checkbox hidden-sm">
-                    <label>
-                      <input type="checkbox" id />
-                      Keep me sign in
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div className="col-sm-5">
-                <div className="form-group">
-                  <input type="text" className="form-control" placeholder="Password" />
-                  <div className="login-bottom-text hidden-sm"> Forgot your password?</div>
-                </div>
-              </div>
-              <div className="col-sm-2">
-                <div className="form-group">
-                  <input
-                    type="button"
-                    defaultValue="login"
-                    className="btn btn-default btn-header-login"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <nav className="navbar navbar-expand-lg navbar-light">
+      <a className="navbar-brand" href="#">
+        <img src={logo} className="header-logo" alt="Facebook" />
+      </a>
+
+      <div className="collapse navbar-collapse" id="navbarNav">
+        <ul className="navbar-nav">
+          <li className="nav-item active">
+            <a className="nav-link" href="#">
+              Home <span className="sr-only">(current)</span>
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#">
+              Features
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#">
+              Pricing
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link disabled" href="#">
+              Disabled
+            </a>
+          </li>
+        </ul>
       </div>
-    </header>
+    </nav>
   );
 };
 

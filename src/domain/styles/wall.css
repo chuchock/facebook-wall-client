@@ -1,0 +1,16 @@
+.profile-container {
+    background: linear-gradient(180deg, rgba(109, 130, 161, 1) 0%, rgba(255, 255, 255, 1) 50%);
+}
+
+.form-separator {
+    align-items: center;
+    border-bottom: 1px solid #dadde1;
+    display: flex;
+    margin-top: 10px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    text-align: center;
+    max-width: 900px;
+    width: 900px
+}
