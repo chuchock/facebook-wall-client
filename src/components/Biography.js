@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import Post from './Post';
 import MakePost from './MakePost';
+import PostFilter from './PostFilter';
 import './styles/biography.css';
+import postContext from '../context/postContext';
 
 const Biography = () => {
+  const postsContext = useContext(postContext);
+  const { posts, getPosts } = postsContext;
+
+  useEffect(() => {
+    getPosts();
+  }, []);
+
   return (
     <div className="biography-container">
       <div className="container">
@@ -96,12 +105,12 @@ const Biography = () => {
 
           <div className="col-md-6">
             <MakePost />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
+
+            <PostFilter />
+
+            {posts.map((post) => (
+              <Post key={post.id} />
+            ))}
           </div>
         </div>
       </div>
