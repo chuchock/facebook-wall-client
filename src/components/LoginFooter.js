@@ -11,13 +11,7 @@ const LoginFooter = () => {
         >
           <li>Español</li>
           <li>
-            <a
-              className="_sv4"
-              dir="ltr"
-              href="https://www.facebook.com/"
-              onClick='require("IntlUtils").setCookieLocale("en_US", "es_LA", "https:\/\/www.facebook.com\/", "www_list_selector", 0); return false;'
-              title="English (US)"
-            >
+            <a className="_sv4" dir="ltr" href="https://www.facebook.com/" title="English (US)">
               English (US)
             </a>
           </li>
@@ -26,7 +20,6 @@ const LoginFooter = () => {
               className="_sv4"
               dir="ltr"
               href="https://pt-br.facebook.com/"
-              onClick='require("IntlUtils").setCookieLocale("pt_BR", "es_LA", "https:\/\/pt-br.facebook.com\/", "www_list_selector", 1); return false;'
               title="Portuguese (Brazil)"
             >
               Português (Brasil)
@@ -37,64 +30,33 @@ const LoginFooter = () => {
               className="_sv4"
               dir="ltr"
               href="https://fr-fr.facebook.com/"
-              onClick='require("IntlUtils").setCookieLocale("fr_FR", "es_LA", "https:\/\/fr-fr.facebook.com\/", "www_list_selector", 2); return false;'
               title="French (France)"
             >
               Français (France)
             </a>
           </li>
           <li>
-            <a
-              className="_sv4"
-              dir="ltr"
-              href="https://de-de.facebook.com/"
-              onClick='require("IntlUtils").setCookieLocale("de_DE", "es_LA", "https:\/\/de-de.facebook.com\/", "www_list_selector", 3); return false;'
-              title="German"
-            >
+            <a className="_sv4" dir="ltr" href="https://de-de.facebook.com/" title="German">
               Deutsch
             </a>
           </li>
           <li>
-            <a
-              className="_sv4"
-              dir="ltr"
-              href="https://it-it.facebook.com/"
-              onClick='require("IntlUtils").setCookieLocale("it_IT", "es_LA", "https:\/\/it-it.facebook.com\/", "www_list_selector", 4); return false;'
-              title="Italian"
-            >
+            <a className="_sv4" dir="ltr" href="https://it-it.facebook.com/" title="Italian">
               Italiano
             </a>
           </li>
           <li>
-            <a
-              className="_sv4"
-              dir="ltr"
-              href="https://ja-jp.facebook.com/"
-              onClick='require("IntlUtils").setCookieLocale("ja_JP", "es_LA", "https:\/\/ja-jp.facebook.com\/", "www_list_selector", 5); return false;'
-              title="Japanese"
-            >
+            <a className="_sv4" dir="ltr" href="https://ja-jp.facebook.com/" title="Japanese">
               日本語
             </a>
           </li>
           <li>
-            <a
-              className="_sv4"
-              dir="rtl"
-              href="https://ar-ar.facebook.com/"
-              onClick='require("IntlUtils").setCookieLocale("ar_AR", "es_LA", "https:\/\/ar-ar.facebook.com\/", "www_list_selector", 6); return false;'
-              title="Arabic"
-            >
+            <a className="_sv4" dir="rtl" href="https://ar-ar.facebook.com/" title="Arabic">
               العربية
             </a>
           </li>
           <li>
-            <a
-              className="_sv4"
-              dir="ltr"
-              href="https://hi-in.facebook.com/"
-              onClick='require("IntlUtils").setCookieLocale("hi_IN", "es_LA", "https:\/\/hi-in.facebook.com\/", "www_list_selector", 7); return false;'
-              title="Hindi"
-            >
+            <a className="_sv4" dir="ltr" href="https://hi-in.facebook.com/" title="Hindi">
               हिन्दी
             </a>
           </li>
@@ -103,7 +65,6 @@ const LoginFooter = () => {
               className="_sv4"
               dir="ltr"
               href="https://zh-cn.facebook.com/"
-              onClick='require("IntlUtils").setCookieLocale("zh_CN", "es_LA", "https:\/\/zh-cn.facebook.com\/", "www_list_selector", 8); return false;'
               title="Simplified Chinese (China)"
             >
               中文(简体)

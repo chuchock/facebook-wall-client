@@ -1,77 +1,49 @@
-import React, { useState } from 'react';
-import LoginFooter from '../components/LoginFooter';
+import React, { useState, useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import LoginFooter from '../../components/LoginFooter';
 import './styles/Login.css';
-import facebook from '../assets/facebook.svg';
+import facebook from '../../assets/facebook.svg';
+import AuthContext from '../../context/authentication/authContext';
 
 const Login = (props) => {
-  const [username, setUsername] = useState('');
+  const authContext = useContext(AuthContext);
+  const { signIn, authenticated, message } = authContext;
 
-  const [password, setPassword] = useState('');
+  useEffect(() => {
+    if (authenticated) {
+      props.history.push('/wall');
+    }
 
-  const [validForm, setValidForm] = useState(false);
+    if (message) {
+      // mostrarAlerta(mensaje.msg, mensaje.categoria);
+    }
+    // eslint-disable-next-line
+  }, [message, authenticated, props.history]);
 
-  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState({
+    email: '',
+    password: '',
+  });
 
-  const [message, setMessage] = useState('');
+  const { email, password } = user;
 
-  const [btnClass, setBtnClass] = useState('btn btn-primary btn-block disabled');
-
-  const validateInputs = () => {
-    const usernameRule = /^(?=.*[A-Za-z])[A-Za-z\d|"$%&/]{8,20}$/;
-    const passwordRule = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[|"$%&/])[A-Za-z\d|"$%&/]{8,20}$/;
-
-    setTimeout(() => {
-      if (usernameRule.test(username) && passwordRule.test(password)) {
-        setMessage('');
-        setValidForm(true);
-        setBtnClass('btn btn-primary btn-block');
-      } else {
-        setValidForm(false);
-        setBtnClass('btn btn-primary btn-block disabled');
-      }
-    }, 1000);
-  };
-
-  const onChangeUsername = (e) => {
-    const username = e.target.value;
-    setUsername(username);
-  };
-
-  const onChangePassword = (e) => {
-    const password = e.target.value;
-    setPassword(password);
+  const onChange = (e) => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleLogin = (e) => {
     e.preventDefault();
 
-    props.history.push('/wall');
+    // Validar que no haya campos vacios
+    if (email.trim() === '' || password.trim() === '') {
+      // mostrarAlerta('Todos los campos son obligatorios', 'alerta-error');
+      return;
+    }
 
-    // if (validForm) {
-    //   setLoading(true);
-
-    //   setTimeout(() => {
-    //     authenticationService.login(username, password).then(
-    //       (response) => {
-    //         setLoading(false);
-    //         if (response && response.length) {
-    //           window.location.reload();
-    //         } else {
-    //           const resMessage = 'Username or Password incorrect';
-    //           setMessage(resMessage);
-    //         }
-    //       },
-    //       (error) => {
-    //         const resMessage = 'Error';
-
-    //         setLoading(false);
-    //         setMessage(resMessage);
-    //       }
-    //     );
-    //   }, 1000);
-    // } else {
-    //   setMessage('There are errors in the fields');
-    // }
+    signIn({ email, password });
   };
 
   return (
@@ -99,10 +71,9 @@ const Login = (props) => {
                       type="text"
                       placeholder="Username"
                       className="form-control"
-                      name="username"
-                      value={username}
-                      onChange={onChangeUsername}
-                      onBlur={validateInputs}
+                      name="email"
+                      value={email}
+                      onChange={onChange}
                     />
                   </div>
 
@@ -113,25 +84,28 @@ const Login = (props) => {
                       className="form-control"
                       name="password"
                       value={password}
-                      onChange={onChangePassword}
-                      onBlur={validateInputs}
+                      onChange={onChange}
                     />
                   </div>
 
-                  <div className="form-group">
+                  <button type="submit" className="btn">
+                    Login
+                  </button>
+
+                  {/* <div className="form-group">
                     <button type="submit" className={btnClass} disabled={loading}>
                       {loading && <span className="spinner-border spinner-border-sm"></span>}
                       <span>Login</span>
                     </button>
-                  </div>
+                  </div> */}
 
-                  {message && (
+                  {/* {message && (
                     <div className="form-group">
                       <div className="alert alert-danger" role="alert">
                         {message}
                       </div>
                     </div>
-                  )}
+                  )} */}
                 </form>
 
                 <div className="text-center">
@@ -143,9 +117,9 @@ const Login = (props) => {
                 <div className="form-separator" />
 
                 <div className="text-center">
-                  <button type="button" className="btn btn-success">
-                    Create new account
-                  </button>
+                  <Link to="/signup" className="btn btn-success">
+                    Obtener Cuenta
+                  </Link>
                 </div>
               </div>
 

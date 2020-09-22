@@ -1,0 +1,19 @@
+body {
+    background-color: #f0f2f5;
+}
+
+.btn-signup {
+    background: none;
+    background-color: #00a400;
+    border: none;
+    border-radius: 6px;
+    box-shadow: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    height: 36px;
+    overflow: hidden;
+    padding-left: 32px;
+    padding-right: 32px;
+    text-shadow: none;
+}
