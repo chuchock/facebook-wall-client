@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import AuthContext from '../context/authentication/authContext';
 
 const Profile = () => {
+  const authContext = useContext(AuthContext);
+  const { user } = authContext;
+
   return (
     <div className="profile-container">
       <div className="container">
@@ -16,7 +20,11 @@ const Profile = () => {
 
         <div className="mx-auto text-center">
           <div>
-            <h1>Jesus Montero</h1>
+            {user ? (
+              <h1>
+                {user.name} {user.lastName}
+              </h1>
+            ) : null}
           </div>
           <div>
             <a href="#" alt="presentation">
