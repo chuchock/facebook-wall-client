@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import postContext from '../context/postContext';
+import postContext from '../context/posts/postContext';
 
 const MakePost = () => {
   const postsContext = useContext(postContext);

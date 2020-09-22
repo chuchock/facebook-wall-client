@@ -1,4 +1,4 @@
-import { GET_POSTS, ADD_POST, DELETE_POST } from '../types';
+import { GET_POSTS, ADD_POST, DELETE_POST } from '../../types';
 
 export default (state, action) => {
   switch (action.type) {

@@ -1,9 +1,12 @@
-import React from 'react';
-
+import React, { useContext } from 'react';
+import AuthContext from '../context/authentication/authContext';
 import './styles/Header.css';
 import logo from '../assets/fb_logo.svg';
 
 const Header = () => {
+  const authContext = useContext(AuthContext);
+  const { user, authenticatedUser, signOff } = authContext;
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
       <a className="navbar-brand" href="#">
@@ -34,6 +37,10 @@ const Header = () => {
           </li>
         </ul>
       </div>
+
+      <button className="btn btn-blank" onClick={() => signOff()}>
+        Sign off
+      </button>
     </nav>
   );
 };

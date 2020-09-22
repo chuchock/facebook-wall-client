@@ -3,7 +3,7 @@ import Post from './Post';
 import MakePost from './MakePost';
 import PostFilter from './PostFilter';
 import './styles/biography.css';
-import postContext from '../context/postContext';
+import postContext from '../context/posts/postContext';
 
 const Biography = () => {
   const postsContext = useContext(postContext);

@@ -4,7 +4,7 @@ import React, { useReducer } from 'react';
 import postContext from './postContext';
 import postReducer from './postReducer';
 
-import { GET_POSTS, ADD_POST, DELETE_POST } from '../types';
+import { GET_POSTS, ADD_POST, DELETE_POST } from '../../types';
 
 const PostState = (props) => {
   const posts = [];
