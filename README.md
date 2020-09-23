@@ -29,12 +29,6 @@ npm install
 REACT_APP_BACKEND_URL=http://localhost:4000
 ```
 
-### install dependencies
-
-```
-npm install
-```
-
 ### Compiles and run for development
 ```
 npm run start
