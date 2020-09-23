@@ -2,20 +2,33 @@ body {
     background-color: #f0f2f5;
 }
 
-.btn-signup {
-    background: none;
-    background-color: #00a400;
-    border: none;
-    border-radius: 6px;
-    box-shadow: none;
-    color: #fff;
-    font-size: 18px;
-    font-weight: 600;
-    height: 36px;
+
+/* File upload*/
+
+.upload-btn-wrapper {
+    position: relative;
     overflow: hidden;
-    padding-left: 32px;
-    padding-right: 32px;
-    text-shadow: none;
+    display: inline-block;
+}
+
+.btn-upload {
+    /* border: 2px solid gray;
+    color: gray;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold; */
+    width: 30px;
+    height: 30px;
+}
+
+.upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
 }
 
 
@@ -37,4 +50,47 @@ body {
 .post-exit-active {
     opacity: 0;
     transition: opacity 200ms;
+}
+
+
+/*cards*/
+
+.card {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 1px 1px rgba(0, 0, 0, .1);
+    border-radius: 8px;
+}
+
+
+/*forms*/
+
+textarea {
+    resize: none !important;
+    background: #f0f2f5 !important;
+    border: none !important;
+    border-radius: 8px !important;
+}
+
+select {
+    background: #f0f2f5 !important;
+    border: none !important;
+    border-radius: 8px;
+}
+
+
+/* Buttons*/
+
+.btn-signup {
+    background: none;
+    background-color: #00a400;
+    border: none;
+    border-radius: 6px;
+    box-shadow: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    height: 36px;
+    overflow: hidden;
+    padding-left: 32px;
+    padding-right: 32px;
+    text-shadow: none;
 }

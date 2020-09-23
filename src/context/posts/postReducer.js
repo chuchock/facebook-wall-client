@@ -1,4 +1,4 @@
-import { GET_POSTS, ADD_POST, DELETE_POST, UPDATE_POST } from '../../types';
+import { GET_POSTS, ADD_POST, DELETE_POST, UPDATE_POST, CHANGE_FILTER } from '../../types';
 
 export default (state, action) => {
   switch (action.type) {
@@ -12,8 +12,6 @@ export default (state, action) => {
       return {
         ...state,
         posts: [action.payload, ...state.posts],
-        // formulario: false,
-        // errorFormulario: false,
       };
 
     case UPDATE_POST:
@@ -26,7 +24,12 @@ export default (state, action) => {
       return {
         ...state,
         posts: state.posts.filter((post) => post._id !== action.payload),
-        // post: null,
+      };
+
+    case CHANGE_FILTER:
+      return {
+        ...state,
+        selectedFilter: action.payload,
       };
 
     default:
