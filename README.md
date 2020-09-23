@@ -24,6 +24,19 @@ It is installed with node
 npm install
 ```
 
+### Create .env.development.local file in project´s root with the following line
+
+```
+# This is your API URL in localhost (You should run the server)
+REACT_APP_BACKEND_URL=http://localhost:4000
+```
+
+### install dependencies
+
+```
+npm install
+```
+
 ### Compiles and run for development
 ```
 npm run start
