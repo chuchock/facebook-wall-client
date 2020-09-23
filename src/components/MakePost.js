@@ -31,6 +31,7 @@ const MakePost = () => {
 
     setPost({
       content: '',
+      filter: 'friends',
     });
   };
 
@@ -45,6 +46,7 @@ const MakePost = () => {
               placeholder="What's happening?"
               rows="5"
               className="form-control"
+              style={{ resize: 'none' }}
               name="content"
               value={content}
               onChange={onChangePost}

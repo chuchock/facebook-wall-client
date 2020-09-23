@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import Post from './Post';
 import MakePost from './MakePost';
 import PostFilter from './PostFilter';
@@ -14,7 +15,7 @@ const Biography = () => {
   }, []);
 
   return (
-    <div className="biography-container">
+    <div className="biography-container mb-3">
       <div className="container">
         <div className="row">
           <div className="col-md-6">
@@ -108,9 +109,13 @@ const Biography = () => {
 
             <PostFilter />
 
-            {posts.map((post) => (
-              <Post key={post.id} />
-            ))}
+            <TransitionGroup>
+              {posts.map((post) => (
+                <CSSTransition key={post._id} timeout={400} classNames="post">
+                  <Post post={post} />
+                </CSSTransition>
+              ))}
+            </TransitionGroup>
           </div>
         </div>
       </div>

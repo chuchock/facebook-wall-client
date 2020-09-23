@@ -1,67 +1,76 @@
 import React, { useReducer } from 'react';
-// import { v4 as uuidv4 } from 'uuid';
+import axiosClient from '../../config/axios';
 
 import postContext from './postContext';
 import postReducer from './postReducer';
 
-import { GET_POSTS, ADD_POST, DELETE_POST } from '../../types';
+import { GET_POSTS, ADD_POST, DELETE_POST, UPDATE_POST } from '../../types';
 
 const PostState = (props) => {
-  const posts = [];
-
   const initialState = {
     posts: [],
     post: null,
   };
 
-  // Dispatch para ejecutar las acciones
   const [state, dispatch] = useReducer(postReducer, initialState);
 
-  // Serie de funciones para el CRUD
-  // const mostrarFormulario = () => {
-  //   dispatch({
-  //     type: FORMULARIO_PROYECTO,
-  //   });
-  // };
+  const getPosts = async () => {
+    try {
+      const result = await axiosClient.get('/api/posts');
 
-  // Obtener los proyectos
-  const getPosts = () => {
-    dispatch({
-      type: GET_POSTS,
-      payload: posts,
-    });
+      dispatch({
+        type: GET_POSTS,
+        payload: result.data.posts,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  // Agregar nuevo proyecto
-  const addPost = (post) => {
+  const addPost = async (post) => {
     console.log(post);
-    dispatch({
-      type: ADD_POST,
-      payload: post,
-    });
+
+    try {
+      const result = await axiosClient.post('/api/posts', post);
+
+      dispatch({
+        type: ADD_POST,
+        payload: result.data,
+      });
+
+      window.scrollTo(0, 300);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  // Validar formulario por errores
-  // const mostrarError = () => {
-  //   dispatch({
-  //     type: VALIDAR_FORMULARIO,
-  //   });
-  // };
+  const updatePost = async (post) => {
+    console.log(post);
+    try {
+      const result = await axiosClient.put(`/api/posts/${post._id}`, post);
+      console.log(result);
+      dispatch({
+        type: UPDATE_POST,
+        payload: result.data.post,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // Selecciona el proyecto que el usuario dio click
-  // const proyectoActual = (postId) => {
-  //   dispatch({
-  //     type: PROYECTO_ACTUAL,
-  //     payload: proyectoId,
-  //   });
-  // };
+  const deletePost = async (postId) => {
+    try {
+      await axiosClient.delete(`/api/posts/${postId}`);
 
-  // Eliminar un proyecto
-  const deletePost = (postId) => {
-    dispatch({
-      type: DELETE_POST,
-      payload: postId,
-    });
+      dispatch({
+        type: DELETE_POST,
+        payload: postId,
+      });
+
+      //getPosts();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -71,6 +80,7 @@ const PostState = (props) => {
         getPosts,
         addPost,
         deletePost,
+        updatePost,
       }}
     >
       {props.children}
