@@ -46,3 +46,9 @@
     font-size: 14px;
     font-weight: normal;
 }
+
+.login-text {
+    font-family: SFProDisplay-Regular, Helvetica, Arial, sans-serif;
+    font-size: 28px;
+    font-weight: normal;
+}

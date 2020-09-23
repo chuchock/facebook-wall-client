@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import LoginFooter from '../../components/LoginFooter';
 import './styles/Login.css';
 import facebook from '../../assets/facebook.svg';
@@ -7,7 +6,11 @@ import AuthContext from '../../context/authentication/authContext';
 
 const Login = (props) => {
   const authContext = useContext(AuthContext);
-  const { signIn, authenticated, message } = authContext;
+  const { signIn, authenticated, message, resetMesssage } = authContext;
+
+  const [error, setError] = useState(undefined);
+
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (authenticated) {
@@ -15,10 +18,11 @@ const Login = (props) => {
     }
 
     if (message) {
-      // mostrarAlerta(mensaje.msg, mensaje.categoria);
+      setLoading(false);
+      setError(message);
     }
     // eslint-disable-next-line
-  }, [message, authenticated, props.history]);
+  }, [message, authenticated, props.history, error]);
 
   const [user, setUser] = useState({
     email: '',
@@ -37,13 +41,25 @@ const Login = (props) => {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // Validar que no haya campos vacios
     if (email.trim() === '' || password.trim() === '') {
-      // mostrarAlerta('Todos los campos son obligatorios', 'alerta-error');
+      setError('There are empty fields');
       return;
     }
 
+    const emailRule = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (!emailRule.test(email)) {
+      setError('Email is invalid');
+      return;
+    }
+
+    setLoading(true);
+    setError(false);
     signIn({ email, password });
+  };
+
+  const handleSignup = () => {
+    resetMesssage();
+    props.history.push('/signup');
   };
 
   return (
@@ -56,20 +72,21 @@ const Login = (props) => {
                 <img className="login-brand" src={facebook} alt="facebook" />
               </div>
               <div>
-                <h2>
-                  Facebook te ayuda a comunicarte y compartir con las personas que forman parte de
-                  tu vida.
+                <h2 className="login-text">
+                  Facebook helps you communicate and share with the people who are part of your
+                  life.
                 </h2>
               </div>
             </div>
 
             <div className="col-md-6">
               <div className="card-login">
-                <form onSubmit={handleLogin} className="form-login">
+                <form onSubmit={handleLogin} className="form-login mb-0 pb-0">
                   <div className="form-group">
                     <input
-                      type="text"
-                      placeholder="Username"
+                      type="email"
+                      maxLength="30"
+                      placeholder="Email"
                       className="form-control"
                       name="email"
                       value={email}
@@ -80,6 +97,7 @@ const Login = (props) => {
                   <div className="form-group">
                     <input
                       type="password"
+                      maxLength="20"
                       placeholder="Password"
                       className="form-control"
                       name="password"
@@ -88,44 +106,42 @@ const Login = (props) => {
                     />
                   </div>
 
-                  <button type="submit" className="btn">
-                    Login
-                  </button>
-
-                  {/* <div className="form-group">
-                    <button type="submit" className={btnClass} disabled={loading}>
-                      {loading && <span className="spinner-border spinner-border-sm"></span>}
-                      <span>Login</span>
-                    </button>
-                  </div> */}
-
-                  {/* {message && (
+                  {error && (
                     <div className="form-group">
                       <div className="alert alert-danger" role="alert">
-                        {message}
+                        {error}
                       </div>
                     </div>
-                  )} */}
+                  )}
+
+                  <button
+                    type="submit"
+                    className="btn btn-primary btn-block btn-login"
+                    disabled={loading}
+                  >
+                    {loading && <span className="spinner-border spinner-border-sm" />}
+                    <span>Login</span>
+                  </button>
                 </form>
 
-                <div className="text-center">
-                  <a href="https://www.facebook.com/recover/initiate/?ars=facebook_login">
-                    ¿Olvidaste tu contraseña?
-                  </a>
+                <div className="card-body mb-1">
+                  <div className="form-separator" />
                 </div>
 
-                <div className="form-separator" />
-
                 <div className="text-center">
-                  <Link to="/signup" className="btn btn-success">
-                    Obtener Cuenta
-                  </Link>
+                  <button
+                    type="button"
+                    className="btn btn-success btn-signup"
+                    onClick={handleSignup}
+                  >
+                    Create an account
+                  </button>
                 </div>
               </div>
 
               <div className="form-msg">
                 <p className="text-wrap">
-                  <b>Crea una página</b> para un personaje público, un grupo de música o un negocio.
+                  <b>Create a page</b> for a public figure, a music group or a business.
                 </p>
               </div>
             </div>
