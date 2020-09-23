@@ -94,12 +94,9 @@ const MakePost = () => {
             </div>
 
             <div className="col-sm-4">
-              <input
-                type="submit"
-                className="btn btn-primary btn-block"
-                disabled={btnDisabled}
-                value="Publish"
-              />
+              <button type="submit" className="btn btn-primary btn-block" disabled={btnDisabled}>
+                Publish
+              </button>
             </div>
           </div>
         </form>

@@ -5,6 +5,7 @@ import {
   SUCCESSFUL_LOGIN,
   LOGIN_ERROR,
   REGISTER_ERROR,
+  RESET_MESSAGE,
 } from '../../types';
 
 export default (state, action) => {
@@ -38,6 +39,12 @@ export default (state, action) => {
         authenticated: null,
         message: action.payload,
         loading: false,
+      };
+
+    case RESET_MESSAGE:
+      return {
+        ...state,
+        message: null,
       };
 
     default:

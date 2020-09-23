@@ -12,6 +12,7 @@ import {
   SUCCESSFUL_LOGIN,
   LOGIN_ERROR,
   REGISTER_ERROR,
+  RESET_MESSAGE,
 } from '../../types';
 
 const AuthState = (props) => {
@@ -39,7 +40,6 @@ const AuthState = (props) => {
         payload: response.data.user,
       });
     } catch (error) {
-      console.log(error.response);
       dispatch({
         type: LOGIN_ERROR,
       });
@@ -57,11 +57,9 @@ const AuthState = (props) => {
 
       authenticatedUser();
     } catch (error) {
-      console.log(error);
-
       dispatch({
         type: REGISTER_ERROR,
-        //  payload: alerta,
+        payload: error.response.data.msg,
       });
     }
   };
@@ -77,15 +75,9 @@ const AuthState = (props) => {
 
       authenticatedUser();
     } catch (error) {
-      console.log(error.response.data.msg);
-      // const alerta = {
-      //   msg: error.response.data.msg,
-      //   categoria: 'alerta-error',
-      // };
-
       dispatch({
         type: LOGIN_ERROR,
-        //payload: alerta,
+        payload: error.response.data.msg,
       });
     }
   };
@@ -93,6 +85,12 @@ const AuthState = (props) => {
   const signOff = () => {
     dispatch({
       type: SIGN_OFF,
+    });
+  };
+
+  const resetMesssage = () => {
+    dispatch({
+      type: RESET_MESSAGE,
     });
   };
 
@@ -108,6 +106,7 @@ const AuthState = (props) => {
         signIn,
         authenticatedUser,
         signOff,
+        resetMesssage,
       }}
     >
       {props.children}

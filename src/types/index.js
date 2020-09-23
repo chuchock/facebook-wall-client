@@ -10,3 +10,4 @@ export const GET_USER = 'GET_USER';
 export const SUCCESSFUL_LOGIN = 'SUCCESSFUL_LOGIN';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const SIGN_OFF = 'SIGN_OFF';
+export const RESET_MESSAGE = 'RESET_MESSAGE';
