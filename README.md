@@ -6,10 +6,8 @@ Facebook wall clon built with react.js
 
 ### Download and install node in your machine
 
-```
 https://nodejs.org/en/download/
 
-```
 
 ### Install npm (Node Package Manager)
 
