@@ -1,66 +1,105 @@
 import React, { useReducer } from 'react';
-// import { v4 as uuidv4 } from 'uuid';
+import axiosClient from '../../config/axios';
+import Swal from 'sweetalert2';
 
 import postContext from './postContext';
 import postReducer from './postReducer';
 
-import { GET_POSTS, ADD_POST, DELETE_POST } from '../../types';
+import { GET_POSTS, ADD_POST, DELETE_POST, UPDATE_POST, CHANGE_FILTER } from '../../types';
 
 const PostState = (props) => {
-  const posts = [];
-
   const initialState = {
     posts: [],
-    post: null,
+    selectedFilter: 'all',
   };
 
-  // Dispatch para ejecutar las acciones
   const [state, dispatch] = useReducer(postReducer, initialState);
 
-  // Serie de funciones para el CRUD
-  // const mostrarFormulario = () => {
-  //   dispatch({
-  //     type: FORMULARIO_PROYECTO,
-  //   });
-  // };
-
-  // Obtener los proyectos
-  const getPosts = () => {
+  const changeSelectedFilter = (filter) => {
     dispatch({
-      type: GET_POSTS,
-      payload: posts,
+      type: CHANGE_FILTER,
+      payload: filter,
     });
   };
 
-  // Agregar nuevo proyecto
-  const addPost = (post) => {
-    console.log(post);
-    dispatch({
-      type: ADD_POST,
-      payload: post,
-    });
+  const getPosts = async (filter = 'all') => {
+    try {
+      const result = await axiosClient.get(`/api/posts/${filter}`);
+
+      dispatch({
+        type: GET_POSTS,
+        payload: result.data.posts,
+      });
+
+      changeSelectedFilter(filter);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  // Validar formulario por errores
-  // const mostrarError = () => {
-  //   dispatch({
-  //     type: VALIDAR_FORMULARIO,
-  //   });
-  // };
+  const addPost = async (post) => {
+    try {
+      const result = await axiosClient.post('/api/posts', post);
 
-  // Selecciona el proyecto que el usuario dio click
-  // const proyectoActual = (postId) => {
-  //   dispatch({
-  //     type: PROYECTO_ACTUAL,
-  //     payload: proyectoId,
-  //   });
-  // };
+      if (post.filter === state.selectedFilter || state.selectedFilter === 'all') {
+        dispatch({
+          type: ADD_POST,
+          payload: result.data,
+        });
+      }
 
-  // Eliminar un proyecto
-  const deletePost = (postId) => {
-    dispatch({
-      type: DELETE_POST,
-      payload: postId,
+      await getPosts(state.selectedFilter);
+
+      window.scrollTo(0, 300);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const updatePost = async (post) => {
+    try {
+      const result = await axiosClient.put(`/api/posts/${post._id}`, post);
+
+      dispatch({
+        type: UPDATE_POST,
+        payload: result.data.post,
+      });
+
+      await getPosts(state.selectedFilter);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deletePost = async (postId) => {
+    await Swal.fire({
+      title: 'Are you sure to delete the post?',
+      text: '',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.value) {
+        axiosClient
+          .delete(`/api/posts/${postId}`)
+          .then(() => {
+            dispatch({
+              type: DELETE_POST,
+              payload: postId,
+            });
+
+            Swal.fire('Done!', 'The post has been deleted.', 'success');
+          })
+          .catch((error) => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+            });
+          });
+      }
     });
   };
 
@@ -68,9 +107,12 @@ const PostState = (props) => {
     <postContext.Provider
       value={{
         posts: state.posts,
+        selectedFilter: state.selectedFilter,
         getPosts,
         addPost,
         deletePost,
+        updatePost,
+        changeSelectedFilter,
       }}
     >
       {props.children}

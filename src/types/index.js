@@ -1,6 +1,8 @@
 export const GET_POSTS = 'GET_POSTS';
 export const ADD_POST = 'ADD_POST';
 export const DELETE_POST = 'DELETE_POST';
+export const UPDATE_POST = 'UPDATE_POST';
+export const CHANGE_FILTER = 'CHANGE_FILTER';
 
 export const SUCCESSFUL_REGISTRATION = 'SUCCESSFUL_REGISTRATION';
 export const REGISTER_ERROR = 'REGISTER_ERROR';

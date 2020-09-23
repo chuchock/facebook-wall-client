@@ -1,0 +1,36 @@
+.profile-container {
+    margin-top: 60px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 1px 1px rgba(0, 0, 0, .1);
+    position: relative;
+}
+
+.cover-photo {
+    border-radius: 0 0 10px 10px;
+}
+
+.profile-photo {
+    background-color: #ffffff;
+    height: 150px;
+    width: 150px;
+    position: absolute;
+    left: 50%;
+    margin-left: -75px;
+    top: 190px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-photo img {
+    height: 142px;
+    width: 142px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+@media (max-width:910px) {
+    .profile-photo {
+        display: none;
+    }
+}

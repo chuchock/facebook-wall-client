@@ -1,5 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import AuthContext from '../context/authentication/authContext';
+import './styles/profile.css';
+import avatar from '../assets/avatar.jpg';
+import portada from '../assets/portada.jpg';
 
 const Profile = () => {
   const authContext = useContext(AuthContext);
@@ -10,15 +13,14 @@ const Profile = () => {
       <div className="container">
         <div className="row">
           <div className="mx-auto text-center">
-            <img
-              className="img-fluid"
-              alt=""
-              src="https://scontent.fver2-1.fna.fbcdn.net/v/t1.0-0/p235x350/45231189_10215001497368241_4417217393982439424_o.jpg?_nc_cat=106&amp;_nc_sid=e3f864&amp;_nc_eui2=AeEvPfzSKX6X76UjbHfIoHhNwn62_1M-UWLCfrb_Uz5RYlHh_vn91untAiVhL6pLo5M&amp;_nc_ohc=lVN3D3CnwqMAX8ThKMG&amp;_nc_ht=scontent.fver2-1.fna&amp;tp=6&amp;oh=6d20aefc4b456024bddc28fa4bbe3049&amp;oe=5F8B47E3"
-            />
+            <img className="img-fluid cover-photo" alt="" src={portada} />
+            <div className="profile-photo">
+              <img className="" alt="" src={avatar} />
+            </div>
           </div>
         </div>
 
-        <div className="mx-auto text-center">
+        <div className="mx-auto text-center mt-2">
           <div>
             {user ? (
               <h1>
@@ -27,8 +29,8 @@ const Profile = () => {
             ) : null}
           </div>
           <div>
-            <a href="#" alt="presentation">
-              Agregar presentación
+            <a href="/wall" alt="presentation" className="nav-link disabled">
+              Add presentation
             </a>
           </div>
         </div>
@@ -39,23 +41,28 @@ const Profile = () => {
 
         <ul className="nav">
           <li className="nav-item">
-            <a className="nav-link active" href="#">
-              Active
+            <a className="nav-link active" href="/wall">
+              Biography
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
-              Link
+            <a className="nav-link disabled" href="/wall">
+              Information
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
-              Link
+            <a className="nav-link disabled" href="/wall">
+              Friends 0
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link disabled" href="#" tabIndex={-1} aria-disabled="true">
-              Disabled
+            <a className="nav-link disabled" href="/wall">
+              Photos
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link disabled" href="/wall">
+              File
             </a>
           </li>
         </ul>
